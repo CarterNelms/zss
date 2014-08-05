@@ -2,7 +2,7 @@ RSpec.describe "Adding skills to a training path" do
   context "valid input" do
     let!(:training_path1){ TrainingPath.create(name: "Weapon Skills") }
     let!(:training_path2){ TrainingPath.create(name: "Running") }
-    let!(:output){ run_zss_with_input("2", "add", "Jogging") }
+    let!(:output){ run_zss_with_input("2", "add", "Jogging", "The slowest form of a run") }
 
     it "prints a success message" do
      expect(output).to include("Jogging has been added to the Running training path")
@@ -14,6 +14,10 @@ RSpec.describe "Adding skills to a training path" do
 
     it "saves the skill name" do
       expect(Skill.last.name).to eq "Jogging"
+    end
+
+    it "saves the skill description" do
+      expect(Skill.last.description).to eq "The slowest form of a run"
     end
 
   end

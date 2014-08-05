@@ -26,10 +26,22 @@ RSpec.describe "Viewing the skill menu" do
     end
   end
 
-  context "if we enter a training path the doesn't exist" do
+  context "if we enter a training path that doesn't exist" do
     let(:output){ run_zss_with_input('3') }
     it "prints an error message" do
       expect(output).to include("Sorry, training path 3 doesn't exist.")
+    end
+  end
+
+  context "if we view a skill" do
+    let(:output){ run_zss_with_input('2','1') } # Hand-to-Hand Combat with your eyes closed
+
+    before do
+      Skill.create(name: "with your eyes closed", training_path: path2, description: "Use the Force")
+    end
+
+    it "should print the description of the new skill" do
+      expect(output).to include("Use the Force")
     end
   end
 end

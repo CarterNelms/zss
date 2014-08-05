@@ -9,6 +9,18 @@ class TrainingPath
     @id = options[:id]
   end
 
+  def self.progress_bar
+    total_skills = Skill.all().length
+    mastered_skills = Skill.all("WHERE mastered!=''").length
+    unmastered_skills = total_skills - mastered_skills
+    '█'*mastered_skills + '_'*unmastered_skills
+  end
+
+  def self.completion
+    total_skills = Skill.all().length
+    total_skills > 0 ? 100 * (Skill.all("WHERE mastered!=''").length.to_f / total_skills.to_f) : 0
+  end
+
   def self.all
     results = []
     Environment.database.execute("SELECT * FROM training_paths").each do |row|

@@ -106,4 +106,28 @@ RSpec.describe Skill do
       end
     end
   end
+  context ".mastered?" do
+    let(:training_path){ TrainingPath.create(name: "Punching") }
+    context "an unmastered skill" do
+      it "should return false" do
+        a = Skill.create(name: "Hook", training_path: training_path)
+        expect(a.mastered?).to be == false
+      end
+    end
+    context "a mastered skill" do
+      it "should return true" do
+        a = Skill.create(name: "Jab", training_path: training_path, mastered: Time.new)
+        expect(a.mastered?).to be == true
+      end
+    end
+  end
+  context ".master" do
+    let(:training_path){ TrainingPath.create(name: "Punching") }
+
+    it "should master an unmastered skill" do
+      a = Skill.create(name: "Hook", training_path: training_path)
+      a.master
+      expect(a.mastered?).to be == true
+    end
+  end
 end

@@ -199,4 +199,32 @@ RSpec.describe TrainingPath do
       end
     end
   end
+  context '#completion' do
+    let!(:my_training_path){ TrainingPath.create(name: "I own this one") }
+
+    before do
+      Skill.create(name: "mine!", training_path: my_training_path)
+      Skill.create(name: "really mine!", training_path: my_training_path)
+      Skill.create(name: "all mine!", training_path: my_training_path, mastered: Time.new)
+    end
+
+    it 'should print out the percentage of skills that are mastered' do
+      result = TrainingPath.completion
+      result.round(1).to_s.should == '33.3'
+    end
+  end
+  context '#progress_bar' do
+    let!(:my_training_path){ TrainingPath.create(name: "I own this one") }
+    
+    before do
+      Skill.create(name: "mine!", training_path: my_training_path)
+      Skill.create(name: "really mine!", training_path: my_training_path)
+      Skill.create(name: "all mine!", training_path: my_training_path, mastered: Time.new)
+    end
+
+    it 'should print out a progress bar for all skills/training paths' do
+      result = TrainingPath.progress_bar
+      result.should == '█__'
+    end
+  end
 end

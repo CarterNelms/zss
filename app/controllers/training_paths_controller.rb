@@ -15,6 +15,7 @@ class TrainingPathsController
     puts "=============="
     puts "TRAINING PATHS"
     puts "=============="
+    puts "PROGRESS: #{TrainingPath.completion.round(1)}% - #{TrainingPath.progress_bar}"
     training_paths.each_with_index do |training_path, index|
       puts "#{index + 1}. #{training_path.name}"
     end

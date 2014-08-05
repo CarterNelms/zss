@@ -26,13 +26,13 @@ Follow the on-screen prompts to select a training path.  Then, select an individ
 
 ## Contributors
 
-Eliza Marcum
+Carter Nelms
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Eliza Marcum
+Copyright (c) 2014 Carter Nelms
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
